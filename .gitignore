@@ -1,4 +1,6 @@
 # libs and build directories
-ModName/libs
-ModName/bin
-ModName/obj
+BetterDrones/libs
+BetterDrones/bin
+BetterDrones/obj
+
+build.sh

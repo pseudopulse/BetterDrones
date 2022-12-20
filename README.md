@@ -1,2 +1,37 @@
-# r2template
-This repository is a template-repository that contains the basic structure for a risk of rain 2 mod. Names are left empty in the solution, manifest, and csproj files for the user to fill out
+# Better Drones
+A mod that tweaks drones to make them more useful and less boring. Fully configurable.
+
+## Changes
+# Global
+- Drones orbit their owner at a fixed distance like in ROR1
+- Drones that are orbiting cannot collide with enemies
+- Can be toggled off, overrides movement changes when enabled
+
+- All drones have halved base damage and higher skill damage (so they arent op with drone parts)
+- All drones are faster and have higher health and regen
+
+- Drones prioritize enemies that have been recently pinged by their owner
+
+# Healing Drone
+- Longer targeting range
+- Faster healing
+- Less aggressive
+- Stops healing targets above 85% health.
+
+# Incinerator Drone
+- More range
+- More damage
+- 100% ignite chance
+- More aggressive
+
+# Gunner Drone
+- More range
+- More aggressive
+- More damage
+- Higher knockback
+
+# Missile Drone
+- More range
+- Less aggressive
+- More damage
+

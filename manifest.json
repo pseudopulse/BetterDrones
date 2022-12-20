@@ -1,11 +1,10 @@
 {
-	"name": "ModName",
+	"name": "BetterDrones",
 	"version_number": "1.0.0",
-	"website_url": "",
-	"description": "ModDesc",
+	"website_url": "https://github.com/pseudopulse/BetterDrones",
+	"description": "A mod for Risk of Rain 2 that makes drones better.",
 	"dependencies": [
 		"bbepis-BepInExPack-5.4.9",
-		"RiskofThunder-HookGenPatcher-1.2.1",
-        "tristanmcpherson-R2API-4.4.1"
+		"RiskofThunder-HookGenPatcher-1.2.1"
 	]
 }
