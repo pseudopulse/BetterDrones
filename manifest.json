@@ -1,0 +1,11 @@
+{
+	"name": "ModName",
+	"version_number": "1.0.0",
+	"website_url": "",
+	"description": "ModDesc",
+	"dependencies": [
+		"bbepis-BepInExPack-5.4.9",
+		"RiskofThunder-HookGenPatcher-1.2.1",
+        "tristanmcpherson-R2API-4.4.1"
+	]
+}
