@@ -86,9 +86,11 @@ namespace BetterDrones.DroneTweaks {
 
             // tweak skills
             On.EntityStates.Drone.DroneWeapon.StartHealBeam.OnEnter += (orig, self) => {
-                self.healRateCoefficient = HealingDroneHealCoeff;
-                self.baseDuration = HealingDrone.HealingDroneDuration;
-                self.targetSelectionRange = HealingDrone.HealingDroneRange;
+                if (self.characterBody.baseNameToken == "DRONE_HEALING_BODY_NAME") {
+                    self.healRateCoefficient = HealingDroneHealCoeff;
+                    self.baseDuration = HealingDrone.HealingDroneDuration;
+                    self.targetSelectionRange = HealingDrone.HealingDroneRange;
+                }
                 orig(self);
             };
         }

@@ -53,6 +53,7 @@ namespace BetterDrones {
             MissileDrone.EnableChanges();
             HealingDrone.EnableChanges();
             IncineratorDrone.EnableChanges();
+            EmergencyDrone.EnableChanges();
         }
 
         private static void OverrideInputsPerfectAim(On.RoR2.CharacterAI.BaseAI.orig_FixedUpdate orig, BaseAI self) {
