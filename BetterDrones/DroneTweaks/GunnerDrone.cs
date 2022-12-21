@@ -25,13 +25,13 @@ namespace BetterDrones.DroneTweaks {
         private static float GunnerDroneBaseRegen = Main.config.Bind<float>("Gunner Drone - Stats", "Base Regen", 7.5f, "The base regen of a Gunner Drone, vanilla is 5.").Value;
         private static float GunnerDroneBaseSpeed = Main.config.Bind<float>("Gunner Drone - Stats", "Base Speed", 24f, "The base speed of a Gunner Drone, vanilla is 17.").Value;
         private static float GunnerDroneBaseAcceleration = Main.config.Bind<float>("Gunner Drone - Stats", "Base Acceleration", 24f, "The base acceleration of a Gunner Drone, vanilla is 17.").Value;
-        private static float GunnerDroneBaseCrit = Main.config.Bind<float>("Gunner Drone - Stats", "Base Critical Chance", 15f, "The base critical chance of a Gunner Drone, vanilla is 0.").Value;
+        private static float GunnerDroneBaseCrit = Main.config.Bind<float>("Gunner Drone - Stats", "Base Critical Chance", 10f, "The base critical chance of a Gunner Drone, vanilla is 0.").Value;
         private static float GunnerDroneBaseDamage = Main.config.Bind<float>("Gunner Drone - Stats", "Base Damage", 5f, "The base damage of a Gunner Drone, vanilla is 10.").Value;
         // skill config vars
-        private static int GunnerDroneBulletCount = Main.config.Bind<int>("Gunner Drone - Primary", "Bullet Count", 6, "The total bullets fired by a Gunner Drone's primary, vanilla is 4.").Value;
+        private static int GunnerDroneBulletCount = Main.config.Bind<int>("Gunner Drone - Primary", "Bullet Count", 5, "The total bullets fired by a Gunner Drone's primary, vanilla is 4.").Value;
         private static int GunnerDroneMaxSpread = Main.config.Bind<int>("Gunner Drone - Primary", "Maximum Spread", 0, "The maximum spread of a Gunner Drone's primary, vanilla is 1.").Value;
-        private static int GunnerDroneForce = Main.config.Bind<int>("Gunner Drone - Primary", "Knockback", 900, "The knockback of a Gunner Drone's primary, vanilla is 200.").Value;
-        private static float GunnerDroneDamageCoeff = Main.config.Bind<int>("Gunner Drone - Primary", "Damage Coefficient", 2, "The damage coefficient of a Gunner Drone's primary, vanilla is 0.5.").Value;
+        private static int GunnerDroneForce = Main.config.Bind<int>("Gunner Drone - Primary", "Knockback", 450, "The knockback of a Gunner Drone's primary, vanilla is 200.").Value;
+        private static float GunnerDroneDamageCoeff = Main.config.Bind<int>("Gunner Drone - Primary", "Damage Coefficient", 1, "The damage coefficient of a Gunner Drone's primary, vanilla is 0.5.").Value;
         
 
         private static void TweakAI() {

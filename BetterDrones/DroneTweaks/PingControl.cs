@@ -26,7 +26,7 @@ namespace BetterDrones.DroneTweaks {
                         if (owner.playerCharacterMasterController && owner.playerCharacterMasterController.pingerController) {
                             PingerController controller = owner.playerCharacterMasterController.pingerController;
                             if (controller.currentPing.active && controller.currentPing.targetGameObject) {
-                                if (controller.currentPing.targetGameObject.GetComponent<CharacterBody>()) {
+                                if (controller.currentPing.targetGameObject.GetComponent<CharacterBody>() && controller.currentPing.targetGameObject.GetComponent<CharacterBody>().teamComponent.teamIndex != TeamIndex.Player) {
                                     self.currentEnemy.gameObject = controller.currentPing.targetGameObject;
                                 }
                             }

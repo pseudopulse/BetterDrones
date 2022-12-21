@@ -55,12 +55,13 @@ namespace BetterDrones.DroneTweaks {
             private float updateStopwatch = 0f;
             private float updateDelay = 1f;
             private float mainDistance;
-            private float offset = 2.5f;
+            private float offset = 3.5f;
             private int allyCount;
             private float initialTime = Run.instance.GetRunStopwatch();
             private Vector3 initialRadial;
             private float initialDegrees = UnityEngine.Random.Range(0, 360);
             public CharacterMaster owner;
+            private CharacterBody self => GetComponent<CharacterBody>();
 
             private void Start() {
                 gameObject.layer = LayerIndex.debris.intVal;
@@ -82,10 +83,13 @@ namespace BetterDrones.DroneTweaks {
             }
 
             private void FixedUpdate() {
+                if (!target) {
+                    target = self.master.minionOwnership.ownerMaster.GetBody().transform;
+                }
                 if (target && NetworkServer.active) {
                     float angle = (Run.instance.GetRunStopwatch() - initialTime) * mainOrbitSpeed;
                     Vector3 pos = target.position + new Vector3(0, offset, 0) + Quaternion.AngleAxis(angle, Vector3.up) * initialRadial * (distance);
-                    base.GetComponent<Rigidbody>().MovePosition(pos);
+                    base.transform.position = pos;
                 }
 
                 if (NetworkServer.active) {
