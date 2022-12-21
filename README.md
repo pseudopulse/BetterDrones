@@ -35,3 +35,10 @@ A mod that tweaks drones to make them more useful and less boring. Fully configu
 - Less aggressive
 - More damage
 
+# Emergency Drone
+- Longer targeting range
+- Faster healing
+- Less aggressive
+- Stops healing targets above 85% health.
+- Has a passive healing aura that heals nearby allies for 25% max health every 5 seconds
+
