@@ -17,7 +17,7 @@ namespace BetterDrones.DroneTweaks {
         // misc config vars
         private static bool HealingDroneEnabled = Main.config.Bind<bool>("Healing Drone", "Enable Changes", true, "Should changes to the Healing Drone be enabled?").Value;
         // ai config vars
-        private static float HealingDroneMinDistanceFromOwner = Main.config.Bind<float>("Healing Drone - AI", "Minimum Distance", 20, "The minimum distance a Healing Drone can be from you when it has no targets, vanilla is 35.").Value;
+        private static float HealingDroneMinDistanceFromOwner = Main.config.Bind<float>("Healing Drone - AI", "Minimum Distance", 40, "The minimum distance a Healing Drone can be from you when it has no targets, vanilla is 35.").Value;
         // body config vars
         private static float HealingDroneBaseHealth = Main.config.Bind<float>("Healing Drone - Stats", "Base Health", 210, "The base health of a Healing Drone, vanilla is 150.").Value;
         private static float HealingDroneBaseRegen = Main.config.Bind<float>("Healing Drone - Stats", "Base Regen", 7.5f, "The base regen of a Healing Drone, vanilla is 5.").Value;

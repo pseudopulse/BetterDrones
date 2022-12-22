@@ -30,7 +30,7 @@ namespace BetterDrones {
             config = Config;
 
             MechanicalAllyOrbitEnabled = config.Bind<bool>("Global", "RoR1 Drone Movement", true, "Should aerial mechanical allies orbit you like in Risk of Rain 1? This disables AI movement changes.").Value;
-            MechanicalAllyOrbitDistance = config.Bind<float>("Global", "Drone Orbit Distance", 4.5f, "The distance aerial mechanical allies should orbit you from.").Value;
+            MechanicalAllyOrbitDistance = config.Bind<float>("Global", "Drone Orbit Distance", 4f, "The distance aerial mechanical allies should orbit you from.").Value;
             MechanicalAllyOrbitSpeed = config.Bind<float>("Global", "Drone Orbit Speed", 7f, "The speed in seconds in which it should take for an aerial mechanical ally to make a full rotation around you.").Value;
 
             PingControlEnabled = config.Bind<bool>("Global", "Ping Control", true, "Should mechanical allies target your most recent ping?").Value;
@@ -54,6 +54,7 @@ namespace BetterDrones {
             HealingDrone.EnableChanges();
             IncineratorDrone.EnableChanges();
             EmergencyDrone.EnableChanges();
+            MegaDrone.EnableChanges();
         }
 
         private static void OverrideInputsPerfectAim(On.RoR2.CharacterAI.BaseAI.orig_FixedUpdate orig, BaseAI self) {

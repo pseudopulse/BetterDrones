@@ -17,7 +17,7 @@ namespace BetterDrones.DroneTweaks {
         // misc config vars
         private static bool MissileDroneEnabled = Main.config.Bind<bool>("Missile Drone", "Enable Changes", true, "Should changes to the Missile Drone be enabled?").Value;
         // ai config vars
-        private static float MissileDroneMinDistanceFromOwner = Main.config.Bind<float>("Missile Drone - AI", "Minimum Distance", 20, "The minimum distance a Missile Drone can be from you when it has no targets, vanilla is 60.").Value;
+        private static float MissileDroneMinDistanceFromOwner = Main.config.Bind<float>("Missile Drone - AI", "Minimum Distance", 60, "The minimum distance a Missile Drone can be from you when it has no targets, vanilla is 60.").Value;
         private static float MissileDroneStrafeDistance = Main.config.Bind<float>("Missile Drone - AI", "Strafe Distance", 15, "The maximum distance in which a Missile Drone will attempt to strafe enemies, vanilla is 15.").Value;
         private static float MissileDroneChaseDistance = Main.config.Bind<float>("Missile Drone - AI", "Chase Distance", 175, "The maximum distance in which a Missile Drone will attempt to chase a target, vanilla is 45.").Value;
         // body config vars

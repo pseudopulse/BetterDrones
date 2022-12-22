@@ -17,7 +17,7 @@ namespace BetterDrones.DroneTweaks {
         // misc config vars
         private static bool GunnerDroneEnabled = Main.config.Bind<bool>("Gunner Drone", "Enable Changes", true, "Should changes to the Gunner Drone be enabled?").Value;
         // ai config vars
-        private static float GunnerDroneMinDistanceFromOwner = Main.config.Bind<float>("Gunner Drone - AI", "Minimum Distance", 20, "The minimum distance a Gunner Drone can be from you when it has no targets, vanilla is 60.").Value;
+        private static float GunnerDroneMinDistanceFromOwner = Main.config.Bind<float>("Gunner Drone - AI", "Minimum Distance", 50, "The minimum distance a Gunner Drone can be from you when it has no targets, vanilla is 60.").Value;
         private static float GunnerDroneStrafeDistance = Main.config.Bind<float>("Gunner Drone - AI", "Strafe Distance", 30, "The maximum distance in which a Gunner Drone will attempt to strafe enemies, vanilla is 15.").Value;
         private static float GunnerDroneChaseDistance = Main.config.Bind<float>("Gunner Drone - AI", "Chase Distance", 175, "The maximum distance in which a Gunner Drone will attempt to chase a target, vanilla is 45.").Value;
         // body config vars

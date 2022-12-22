@@ -17,7 +17,7 @@ namespace BetterDrones.DroneTweaks {
             On.RoR2.CharacterAI.BaseAI.UpdateTargets += OverrideTarget;
         }
 
-        public static void OverrideTarget(On.RoR2.CharacterAI.BaseAI.orig_UpdateTargets orig, BaseAI self) {
+        private static void OverrideTarget(On.RoR2.CharacterAI.BaseAI.orig_UpdateTargets orig, BaseAI self) {
             orig(self);
             if (NetworkServer.active) {
                 if (self.master && self.master.minionOwnership && self.body.bodyFlags.HasFlag(CharacterBody.BodyFlags.Mechanical)) {

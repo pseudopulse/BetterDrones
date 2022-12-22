@@ -8,7 +8,9 @@ using BetterDrones;
 using BepInEx.Configuration;
 using RoR2.CharacterAI;
 using EntityStates.Drone.DroneWeapon;
+using R2API;
 using EntityStates;
+using System.Collections.Generic;
 
 namespace BetterDrones.DroneTweaks {
     public class EmergencyDrone {
@@ -18,7 +20,7 @@ namespace BetterDrones.DroneTweaks {
         // misc config vars
         private static bool EmergencyDroneEnabled = Main.config.Bind<bool>("Emergency Drone", "Enable Changes", true, "Should changes to the Emergency Drone be enabled?").Value;
         // ai config vars
-        private static float EmergencyDroneMinDistanceFromOwner = Main.config.Bind<float>("Emergency Drone - AI", "Minimum Distance", 20, "The minimum distance a Emergency Drone can be from you when it has no targets, vanilla is 35.").Value;
+        private static float EmergencyDroneMinDistanceFromOwner = Main.config.Bind<float>("Emergency Drone - AI", "Minimum Distance", 40, "The minimum distance a Emergency Drone can be from you when it has no targets, vanilla is 35.").Value;
         private static bool EmergencyDroneUseTargeting = Main.config.Bind<bool>("Emergency Drone - AI", "Use Standard Targeting", false, "Use the weird special targeting that Emergency Drones have? vanilla is true.").Value;
         // body config vars
         private static float EmergencyDroneBaseHealth = Main.config.Bind<float>("Emergency Drone - Stats", "Base Health", 460, "The base health of a Emergency Drone, vanilla is 300.").Value;
@@ -35,8 +37,8 @@ namespace BetterDrones.DroneTweaks {
         public static float EmergencyDroneHealAuraFraction = Main.config.Bind<float>("Emergency Drone - Heal Aura", "Heal Fraction", 0.25f, "The healing fraction of an Emergency Drone's aura.").Value;
         public static float EmergencyDroneHealAuraRange = Main.config.Bind<float>("Emergency Drone - Heal Aura", "Range", 25f, "The range of an Emergency Drone's aura.").Value;
         public static float EmergencyDroneHealAuraInterval = Main.config.Bind<float>("Emergency Drone - Heal Aura", "Inteval", 5f, "The frequency in seconds of an Emergency Drone's aura.").Value;
-        
-
+        // more stages
+        private static bool EmergencyDroneMoreStages = Main.config.Bind<bool>("Emergency Drone - More Stages", "Enabled", true, "Should the Emergency Drone spawn on more stages?").Value;
         private static void TweakAI() {
             GameObject master = Addressables.LoadAssetAsync<GameObject>(EmergencyDroneMasterPath).WaitForCompletion();
         
@@ -123,6 +125,29 @@ namespace BetterDrones.DroneTweaks {
             if (EmergencyDroneEnabled) {
                 TweakAI();
                 TweakBody();
+
+                if (EmergencyDroneMoreStages) {
+                    DirectorCard card = new() {
+                        spawnCard = Addressables.LoadAssetAsync<InteractableSpawnCard>("RoR2/Base/Drones/iscBrokenEmergencyDrone.asset").WaitForCompletion(),
+                        selectionWeight = 1,
+                    };
+
+                    List<DirectorAPI.Stage> stages = new() {
+                        DirectorAPI.Stage.AbandonedAqueduct,
+                        DirectorAPI.Stage.ArtifactReliquary,
+                        DirectorAPI.Stage.ScorchedAcres,
+                        DirectorAPI.Stage.SulfurPools,
+                    };
+
+                    DirectorAPI.DirectorCardHolder holder = new() {
+                        Card = card,
+                        InteractableCategory = DirectorAPI.InteractableCategory.Drones
+                    };
+
+                    foreach (DirectorAPI.Stage stage in stages) {
+                        DirectorAPI.Helpers.AddNewInteractableToStage(holder, stage);
+                    }
+                }
             }
         }
     }

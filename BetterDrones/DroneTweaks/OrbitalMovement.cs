@@ -30,13 +30,31 @@ namespace BetterDrones.DroneTweaks {
         private static void EnableOrbit(On.RoR2.CharacterBody.orig_Start orig, CharacterBody self) {
             orig(self);
             if (NetworkServer.active) {
-                if (self.gameObject.GetComponent<VectorPID>() && self.bodyFlags.HasFlag(CharacterBody.BodyFlags.Mechanical)) {
+                IEnumerable<CharacterMaster> minions = CharacterMaster.readOnlyInstancesList.Where(x => x.minionOwnership && x.minionOwnership.ownerMaster == self.master);
+                if (self.isPlayerControlled) {
+                    foreach (CharacterMaster master in minions) {
+                        if (master.GetBody() && !master.GetBody().GetComponent<OrbitController>() && master.GetBody().bodyFlags.HasFlag(CharacterBody.BodyFlags.Mechanical) && master.GetBody().GetComponent<VectorPID>()) {
+                            OrbitController controller = master.GetBody().gameObject.AddComponent<OrbitController>();
+                            controller.target = self.gameObject.transform;
+                            controller.owner = self.master;
+                            controller.FetchAllyCount();
+                        }
+                        else if (master.GetBody() && master.GetBody().GetComponent<OrbitController>() && master.GetBody().bodyFlags.HasFlag(CharacterBody.BodyFlags.Mechanical) && master.GetBody().GetComponent<VectorPID>()) {
+                            GameObject.Destroy(master.GetBody().gameObject.GetComponent<OrbitController>());
+                            OrbitController controller = master.GetBody().gameObject.AddComponent<OrbitController>();
+                            controller.target = self.gameObject.transform;
+                            controller.owner = self.master;
+                            controller.FetchAllyCount();
+                        }
+                    }
+                }
+                else if (self.gameObject.GetComponent<VectorPID>() && self.bodyFlags.HasFlag(CharacterBody.BodyFlags.Mechanical)) {
                     CharacterMaster master = self.master;
                     if (master) {
                         MinionOwnership owner = master.minionOwnership;
                         if (owner && owner.ownerMaster) {
                             GameObject bodyObject = owner.ownerMaster.GetBodyObject();
-                            if (bodyObject) {
+                            if (bodyObject && owner.ownerMaster.GetBody().isPlayerControlled && !self.GetComponent<OrbitController>()) {
                                 OrbitController controller = self.gameObject.AddComponent<OrbitController>();
                                 controller.owner = master;
                                 controller.target = bodyObject.transform;
@@ -64,7 +82,7 @@ namespace BetterDrones.DroneTweaks {
             private CharacterBody self => GetComponent<CharacterBody>();
 
             private void Start() {
-                gameObject.layer = LayerIndex.debris.intVal;
+                gameObject.layer = LayerIndex.noCollision.intVal;
 
                 switch (base.GetComponent<CharacterBody>().baseNameToken) {
                     case "ROBOBALLGREENBUDDY_BODY_NAME":
@@ -75,6 +93,10 @@ namespace BetterDrones.DroneTweaks {
                         offset *= 4;
                         distance *= 4f;
                         break;
+                    case "DRONE_MEGA_BODY_NAME":
+                        offset *= 3f;
+                        distance *= 3f;
+                        break;
                     default:
                         break;
                 }
@@ -84,7 +106,9 @@ namespace BetterDrones.DroneTweaks {
 
             private void FixedUpdate() {
                 if (!target) {
-                    target = self.master.minionOwnership.ownerMaster.GetBody().transform;
+                    if (owner.GetBodyObject()) {
+                        target = owner.GetBodyObject().transform;
+                    }
                 }
                 if (target && NetworkServer.active) {
                     float angle = (Run.instance.GetRunStopwatch() - initialTime) * mainOrbitSpeed;
