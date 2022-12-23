@@ -73,7 +73,7 @@ namespace BetterDrones.DroneTweaks {
             private float updateStopwatch = 0f;
             private float updateDelay = 1f;
             private float mainDistance;
-            private float offset = 3.5f;
+            private float offset = 3f;
             private int allyCount;
             private float initialTime = Run.instance.GetRunStopwatch();
             private Vector3 initialRadial;
@@ -95,7 +95,7 @@ namespace BetterDrones.DroneTweaks {
                         break;
                     case "DRONE_MEGA_BODY_NAME":
                         offset *= 3f;
-                        distance *= 3f;
+                        distance *= 2f;
                         break;
                     default:
                         break;
@@ -113,7 +113,8 @@ namespace BetterDrones.DroneTweaks {
                 if (target && NetworkServer.active) {
                     float angle = (Run.instance.GetRunStopwatch() - initialTime) * mainOrbitSpeed;
                     Vector3 pos = target.position + new Vector3(0, offset, 0) + Quaternion.AngleAxis(angle, Vector3.up) * initialRadial * (distance);
-                    base.transform.position = pos;
+                    Vector3 newPos = Vector3.MoveTowards(base.transform.position, pos, 3);
+                    base.GetComponent<Rigidbody>().MovePosition(newPos);
                 }
 
                 if (NetworkServer.active) {

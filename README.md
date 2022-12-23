@@ -12,10 +12,13 @@ A mod that tweaks drones to make them more useful and less boring. Fully configu
 
 - Drones prioritize enemies that have been recently pinged by their owner
 
+- Allies no longer absorb hitscan attacks like Flamethrower and Double Tap
+
 # Healing Drone
 - Longer targeting range
 - Faster healing
 - Less aggressive
+- Sticks closer to owner
 - Stops healing targets above 85% health.
 
 # Incinerator Drone
@@ -29,11 +32,13 @@ A mod that tweaks drones to make them more useful and less boring. Fully configu
 - More aggressive
 - More damage
 - Higher knockback
+- Sticks closer to owner
 
 # Missile Drone
 - More range
 - Less aggressive
 - More damage
+- Sticks closer to owner
 
 # Emergency Drone
 - Longer targeting range
@@ -41,4 +46,16 @@ A mod that tweaks drones to make them more useful and less boring. Fully configu
 - Less aggressive
 - Stops healing targets above 85% health.
 - Has a passive healing aura that heals nearby allies for 25% max health every 5 seconds
+- Spawns in Sulfur Pools, Scorched Acres, Abandoned Aqueduct, and the Artifact Reliquary
+- Sticks closer to owner
+
+# TC-280
+- Longer targeting range
+- More aggressive
+- Much tankier
+- Has a passive laser that switches on in intervals of 5 seconds, applying several supportive debuffs to it's current target
+
+# Gunner Turret
+- Longer targeting range
+- Tankier
 

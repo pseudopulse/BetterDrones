@@ -30,7 +30,7 @@ namespace BetterDrones {
             config = Config;
 
             MechanicalAllyOrbitEnabled = config.Bind<bool>("Global", "RoR1 Drone Movement", true, "Should aerial mechanical allies orbit you like in Risk of Rain 1? This disables AI movement changes.").Value;
-            MechanicalAllyOrbitDistance = config.Bind<float>("Global", "Drone Orbit Distance", 4f, "The distance aerial mechanical allies should orbit you from.").Value;
+            MechanicalAllyOrbitDistance = config.Bind<float>("Global", "Drone Orbit Distance", 3f, "The distance aerial mechanical allies should orbit you from.").Value;
             MechanicalAllyOrbitSpeed = config.Bind<float>("Global", "Drone Orbit Speed", 7f, "The speed in seconds in which it should take for an aerial mechanical ally to make a full rotation around you.").Value;
 
             PingControlEnabled = config.Bind<bool>("Global", "Ping Control", true, "Should mechanical allies target your most recent ping?").Value;
@@ -55,6 +55,9 @@ namespace BetterDrones {
             IncineratorDrone.EnableChanges();
             EmergencyDrone.EnableChanges();
             MegaDrone.EnableChanges();
+            GunnerTurret.EnableChanges();
+
+            On.RoR2.BulletAttack.Fire += AlliesDontEatShots;
         }
 
         private static void OverrideInputsPerfectAim(On.RoR2.CharacterAI.BaseAI.orig_FixedUpdate orig, BaseAI self) {
@@ -67,5 +70,19 @@ namespace BetterDrones {
                 }
             }
         }
-    }
+
+        private static void AlliesDontEatShots(On.RoR2.BulletAttack.orig_Fire orig, BulletAttack self) {
+            if (self.filterCallback == BulletAttack.defaultFilterCallback) {
+                self.filterCallback = delegate (BulletAttack attack, ref BulletAttack.BulletHit hit) {
+                    if (hit.hitHurtBox && hit.hitHurtBox.teamIndex != self.owner.GetComponent<TeamComponent>().teamIndex) {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                };
+            }
+            orig(self);
+        }
+    } 
 }
