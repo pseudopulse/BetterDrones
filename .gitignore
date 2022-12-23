@@ -3,4 +3,6 @@ BetterDrones/libs
 BetterDrones/bin
 BetterDrones/obj
 
+BetterDronesBuild
+
 build.sh
