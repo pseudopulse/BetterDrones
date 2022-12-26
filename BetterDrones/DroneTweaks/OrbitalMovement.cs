@@ -82,6 +82,11 @@ namespace BetterDrones.DroneTweaks {
             private CharacterBody self => GetComponent<CharacterBody>();
 
             private void Start() {
+                if (Main.MechanicalAllyOrbitBlacklist.Contains(BodyCatalog.GetBodyName(self.bodyIndex))) {
+                    DestroyImmediate(GetComponent<OrbitController>());
+                    return;
+                }
+
                 gameObject.layer = LayerIndex.noCollision.intVal;
 
                 switch (base.GetComponent<CharacterBody>().baseNameToken) {
