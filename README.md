@@ -14,8 +14,6 @@ A mod that tweaks drones to make them more useful and less boring. Fully configu
 
 - Allies no longer absorb hitscan attacks like Flamethrower and Double Tap
 
-- Mercenary's Eviscerate no longer targets allies
-
 ## Healing Drone
 - Longer targeting range
 - Faster healing
@@ -62,6 +60,8 @@ A mod that tweaks drones to make them more useful and less boring. Fully configu
 - Tankier
 
 # Changelog
+## 1.1.1
+- readme change lmao
 ## 1.1.0
 - Added a configurable blacklist for orbital movement
 ## 1.0.0
