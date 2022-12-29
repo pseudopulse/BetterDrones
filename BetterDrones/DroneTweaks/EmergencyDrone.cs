@@ -34,7 +34,7 @@ namespace BetterDrones.DroneTweaks {
         private static float EmergencyDroneHealCoeff = Main.config.Bind<int>("Emergency Drone - Primary", "Heal Coefficient", 1, "The heal coefficient of a Emergency Drone's healing beam, vanilla is 0.5.").Value;
         // heal aura vars
         public static bool EmergencyDroneHealAuraEnabled = Main.config.Bind<bool>("Emergency Drone - Heal Aura", "Use Healing Aura", true, "Should Emergency Drones have a passive healing aura?").Value;
-        public static float EmergencyDroneHealAuraFraction = Main.config.Bind<float>("Emergency Drone - Heal Aura", "Heal Fraction", 0.25f, "The healing fraction of an Emergency Drone's aura.").Value;
+        public static float EmergencyDroneHealAuraFraction = Main.config.Bind<float>("Emergency Drone - Heal Aura", "Heal Fraction", 0.10f, "The healing fraction of an Emergency Drone's aura.").Value;
         public static float EmergencyDroneHealAuraRange = Main.config.Bind<float>("Emergency Drone - Heal Aura", "Range", 25f, "The range of an Emergency Drone's aura.").Value;
         public static float EmergencyDroneHealAuraInterval = Main.config.Bind<float>("Emergency Drone - Heal Aura", "Inteval", 5f, "The frequency in seconds of an Emergency Drone's aura.").Value;
         // more stages

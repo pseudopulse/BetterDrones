@@ -63,7 +63,6 @@ namespace BetterDrones.DroneStates {
                         RoR2Content.Buffs.Cripple,
                         RoR2Content.Buffs.HealingDisabled,
                         RoR2Content.Buffs.Slow80,
-                        RoR2Content.Buffs.BeetleJuice,
                         RoR2Content.Buffs.Weak
                     };
 

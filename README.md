@@ -13,6 +13,7 @@ A mod that tweaks drones to make them more useful and less boring. Fully configu
 - Drones prioritize enemies that have been recently pinged by their owner
 
 - Allies no longer absorb hitscan attacks like Flamethrower and Double Tap
+- Minions no longer absorb projectiles
 
 ## Healing Drone
 - Longer targeting range
@@ -45,7 +46,7 @@ A mod that tweaks drones to make them more useful and less boring. Fully configu
 - Faster healing
 - Less aggressive
 - Stops healing targets above 85% health.
-- Has a passive healing aura that heals nearby allies for 25% max health every 5 seconds
+- Has a passive healing aura that heals nearby allies for 10% max health every 5 seconds
 - Spawns in Sulfur Pools, Scorched Acres, Abandoned Aqueduct, and the Artifact Reliquary
 - Sticks closer to owner
 
@@ -60,6 +61,11 @@ A mod that tweaks drones to make them more useful and less boring. Fully configu
 - Tankier
 
 # Changelog
+## 1.2.0
+- Minions ignore projectile collision from their owner
+- Reduced Gunner Drone knockback
+- Reduced Emergency Drone healing aura to 10%
+- TC-280 laser no longer applies Beetle Juice
 ## 1.1.1
 - readme change lmao
 ## 1.1.0

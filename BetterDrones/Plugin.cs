@@ -9,6 +9,11 @@ using RoR2.CharacterAI;
 using UnityEngine.Networking;
 using System.Linq;
 using System.Collections.Generic;
+using System.Text;
+using System.IO;
+using System.Text.RegularExpressions;
+using System;
+using System.Xml;
 
 namespace BetterDrones {
     [BepInPlugin(PluginGUID, PluginName, PluginVersion)]
@@ -61,6 +66,8 @@ namespace BetterDrones {
             EmergencyDrone.EnableChanges();
             MegaDrone.EnableChanges();
             GunnerTurret.EnableChanges();
+
+            IgnoreCollision.Enable();
 
             On.RoR2.BulletAttack.Fire += AlliesDontEatShots;
             // On.EntityStates.Merc.Evis.SearchForTarget += DontTargetAllies;

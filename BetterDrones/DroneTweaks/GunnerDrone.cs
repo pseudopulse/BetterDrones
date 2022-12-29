@@ -30,7 +30,7 @@ namespace BetterDrones.DroneTweaks {
         // skill config vars
         private static int GunnerDroneBulletCount = Main.config.Bind<int>("Gunner Drone - Primary", "Bullet Count", 5, "The total bullets fired by a Gunner Drone's primary, vanilla is 4.").Value;
         private static int GunnerDroneMaxSpread = Main.config.Bind<int>("Gunner Drone - Primary", "Maximum Spread", 0, "The maximum spread of a Gunner Drone's primary, vanilla is 1.").Value;
-        private static int GunnerDroneForce = Main.config.Bind<int>("Gunner Drone - Primary", "Knockback", 450, "The knockback of a Gunner Drone's primary, vanilla is 200.").Value;
+        private static int GunnerDroneForce = Main.config.Bind<int>("Gunner Drone - Primary", "Knockback", 250, "The knockback of a Gunner Drone's primary, vanilla is 200.").Value;
         private static float GunnerDroneDamageCoeff = Main.config.Bind<int>("Gunner Drone - Primary", "Damage Coefficient", 1, "The damage coefficient of a Gunner Drone's primary, vanilla is 0.5.").Value;
         
 
