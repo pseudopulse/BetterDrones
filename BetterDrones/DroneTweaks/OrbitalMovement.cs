@@ -73,7 +73,8 @@ namespace BetterDrones.DroneTweaks {
             private float updateStopwatch = 0f;
             private float updateDelay = 1f;
             private float mainDistance;
-            private float offset = 3f;
+            private float referenceOffset => Main.MechanicalAllyOrbitOffset;
+            private float offset;
             private int allyCount;
             private float initialTime = Run.instance.GetRunStopwatch();
             private Vector3 initialRadial;
@@ -86,6 +87,8 @@ namespace BetterDrones.DroneTweaks {
                     DestroyImmediate(GetComponent<OrbitController>());
                     return;
                 }
+
+                offset = referenceOffset;
 
                 gameObject.layer = LayerIndex.noCollision.intVal;
 

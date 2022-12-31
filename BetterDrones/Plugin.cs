@@ -29,6 +29,7 @@ namespace BetterDrones {
         public static bool MechanicalAllyOrbitEnabled;
         public static float MechanicalAllyOrbitDistance;
         public static float MechanicalAllyOrbitSpeed;
+        public static float MechanicalAllyOrbitOffset;
         public static List<string> MechanicalAllyOrbitBlacklist;
         public static bool PingControlEnabled;
         public static bool PerfectAimEnabled;
@@ -39,6 +40,7 @@ namespace BetterDrones {
 
             MechanicalAllyOrbitEnabled = config.Bind<bool>("Global", "RoR1 Drone Movement", true, "Should aerial mechanical allies orbit you like in Risk of Rain 1? This disables AI movement changes.").Value;
             MechanicalAllyOrbitDistance = config.Bind<float>("Global", "Drone Orbit Distance", 3f, "The distance aerial mechanical allies should orbit you from.").Value;
+            MechanicalAllyOrbitOffset = config.Bind<float>("Global", "Drone Orbit Height", 3f, "The height aerial mechanical allies should orbit you from.").Value;
             MechanicalAllyOrbitSpeed = config.Bind<float>("Global", "Drone Orbit Speed", 7f, "The speed in seconds in which it should take for an aerial mechanical ally to make a full rotation around you.").Value;
 
             MechanicalAllyOrbitBlacklist = config.Bind<string>("Global", "Orbit Blacklist", "RoboBallBossBody SuperRoboBallBossBody SquallBody", "List of body names to blacklist from orbit, seperated by whitespace.").Value.Split(' ').ToList();

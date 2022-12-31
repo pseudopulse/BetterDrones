@@ -61,6 +61,8 @@ A mod that tweaks drones to make them more useful and less boring. Fully configu
 - Tankier
 
 # Changelog
+## 1.2.1
+- Added config for orbit height
 ## 1.2.0
 - Minions ignore projectile collision from their owner
 - Reduced Gunner Drone knockback
