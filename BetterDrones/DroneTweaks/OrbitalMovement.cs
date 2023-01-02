@@ -105,6 +105,14 @@ namespace BetterDrones.DroneTweaks {
                         offset *= 3f;
                         distance *= 2f;
                         break;
+                    case "ROBOBALLMINI_BODY_NAME":
+                        offset *= 4;
+                        distance *= 4f;
+                        break;
+                    case "DRONE_BACKUP_BODY_NAME":
+                        offset *= 2f;
+                        distance *= 2f;
+                        break;
                     default:
                         break;
                 }

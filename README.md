@@ -62,6 +62,8 @@ A mod that tweaks drones to make them more useful and less boring. Fully configu
 - Energy Shield that switches on for 5 seconds after dealing 1000% total damage, blocks projectiles from the outside.
 
 # Changelog
+## 1.2.3
+- Added orbit offsets for solus probes and strike drones
 ## 1.2.2
 - Nerfed Gunner Drones to be less free win friday
 - Smoothed out the orbital movement to be less snappy
