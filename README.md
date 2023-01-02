@@ -59,8 +59,13 @@ A mod that tweaks drones to make them more useful and less boring. Fully configu
 ## Gunner Turret
 - Longer targeting range
 - Tankier
+- Energy Shield that switches on for 5 seconds after dealing 1000% total damage, blocks projectiles from the outside.
 
 # Changelog
+## 1.2.2
+- Nerfed Gunner Drones to be less free win friday
+- Smoothed out the orbital movement to be less snappy
+- Gunner Turrets have a periodic shield that activates upon dealing a total of 1000% damage
 ## 1.2.1
 - Added config for orbit height
 ## 1.2.0
