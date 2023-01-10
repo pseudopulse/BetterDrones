@@ -129,7 +129,7 @@ namespace BetterDrones.DroneTweaks {
                 if (target && NetworkServer.active) {
                     float angle = (Run.instance.GetRunStopwatch() - initialTime) * mainOrbitSpeed;
                     Vector3 pos = target.position + new Vector3(0, offset, 0) + Quaternion.AngleAxis(angle, Vector3.up) * initialRadial * (distance);
-                    Vector3 newPos = Vector3.Lerp(base.transform.position, pos, 20);
+                    Vector3 newPos = Vector3.Lerp(base.transform.position, pos, Time.fixedDeltaTime * 20);
                     base.GetComponent<Rigidbody>().MovePosition(newPos);
                 }
 

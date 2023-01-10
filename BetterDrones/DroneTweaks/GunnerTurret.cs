@@ -59,6 +59,8 @@ namespace BetterDrones.DroneTweaks {
                 NetworkStateMachine nsm = prefab.GetComponent<NetworkStateMachine>();
                 nsm.stateMachines = prefab.GetComponents<EntityStateMachine>();
             }
+
+            prefab.RemoveComponents<AkEvent>();
         }
 
         public static void EnableChanges() {

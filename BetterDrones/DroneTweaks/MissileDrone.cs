@@ -92,6 +92,8 @@ namespace BetterDrones.DroneTweaks {
             body.baseRegen = MissileDroneBaseRegen;
             body.baseDamage = MissileDroneBaseDamage;
 
+            prefab.RemoveComponents<AkEvent>();
+
             // tweak skills
             On.EntityStates.Drone.DroneWeapon.FireMissileBarrage.OnEnter += (orig, self) => {
                 FireMissileBarrage.damageCoefficient = MissileDroneDamageCoeff;

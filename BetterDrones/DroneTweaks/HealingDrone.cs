@@ -75,6 +75,8 @@ namespace BetterDrones.DroneTweaks {
         private static void TweakBody() {
             GameObject prefab = Addressables.LoadAssetAsync<GameObject>(HealingDroneBodyPath).WaitForCompletion();
 
+            prefab.RemoveComponents<AkEvent>();
+
             // tweak stats
             CharacterBody body = prefab.GetComponent<CharacterBody>();
             body.baseMaxHealth = HealingDroneBaseHealth;

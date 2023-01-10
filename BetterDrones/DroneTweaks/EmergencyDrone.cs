@@ -99,6 +99,8 @@ namespace BetterDrones.DroneTweaks {
             body.baseRegen = EmergencyDroneBaseRegen;
             body.baseDamage = EmergencyDroneBaseDamage;
 
+            prefab.RemoveComponents<AkEvent>();
+
             // tweak skills
             On.EntityStates.Drone.DroneWeapon.StartHealBeam.OnEnter += (orig, self) => {
                 if (self.characterBody.baseNameToken == "EMERGENCYDRONE_BODY_NAME") {

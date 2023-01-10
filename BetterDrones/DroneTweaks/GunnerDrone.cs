@@ -93,6 +93,8 @@ namespace BetterDrones.DroneTweaks {
             body.baseRegen = GunnerDroneBaseRegen;
             body.baseDamage = GunnerDroneBaseDamage;
 
+            prefab.RemoveComponents<AkEvent>();
+
             // tweak skills
             On.EntityStates.Drone.DroneWeapon.FireTurret.OnEnter += (orig, self) => {
                 FireTurret.bulletCount = GunnerDroneBulletCount;

@@ -88,6 +88,8 @@ namespace BetterDrones.DroneTweaks {
             body.baseDamage = IncineratorDroneBaseDamage;
             body.baseArmor = IncineratorDroneBaseArmor;
 
+            prefab.RemoveComponents<AkEvent>();
+
             // tweak skills
             On.EntityStates.Mage.Weapon.Flamethrower.OnEnter += (orig, self) => {
                 if (self.characterBody.baseNameToken == "FLAMEDRONE_BODY_NAME") {
