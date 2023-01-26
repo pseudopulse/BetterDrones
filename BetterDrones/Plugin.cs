@@ -89,11 +89,11 @@ namespace BetterDrones {
         private static void AlliesDontEatShots(On.RoR2.BulletAttack.orig_Fire orig, BulletAttack self) {
             if (self.filterCallback == BulletAttack.defaultFilterCallback) {
                 self.filterCallback = delegate (BulletAttack attack, ref BulletAttack.BulletHit hit) {
-                    if (hit.hitHurtBox && hit.hitHurtBox.teamIndex != self.owner.GetComponent<TeamComponent>().teamIndex) {
-                        return true;
+                    if (hit.hitHurtBox && hit.hitHurtBox.teamIndex == self.owner.GetComponent<TeamComponent>().teamIndex) {
+                        return false;
                     }
                     else {
-                        return false;
+                        return BulletAttack.DefaultFilterCallbackImplementation(attack, ref hit);
                     }
                 };
             }
