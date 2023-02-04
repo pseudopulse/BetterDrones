@@ -61,6 +61,8 @@ A mod that tweaks drones to make them more useful and less boring. Fully configu
 - Energy Shield that switches on for 5 seconds after dealing 1000% total damage, blocks projectiles from the outside.
 
 # Changelog
+## 1.4.1
+- fixed gunner turrets orbiting the player (hopoo why are they flagged as flying what)
 ## 1.4.0
 - heavily nerfed tc-280
 - tc-280 laser is now disabled by default
