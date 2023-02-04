@@ -41,10 +41,12 @@ namespace BetterDrones.DroneTweaks {
                         case "HealLeader":
                             driver.movementType = AISkillDriver.MovementType.Stop;
                             driver.maxTargetHealthFraction = 0.85f;
+                            driver.activationRequiresAimConfirmation = false;
                             break;
                         case "HealNearAlly":
                             driver.movementType = AISkillDriver.MovementType.Stop;
                             driver.maxTargetHealthFraction = 0.85f;
+                            driver.activationRequiresAimConfirmation = false;
                             break;
                         default:
                             GameObject.Destroy(driver);

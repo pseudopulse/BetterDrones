@@ -38,25 +38,6 @@ namespace BetterDrones.DroneTweaks {
         private static void TweakAI() {
             GameObject master = Addressables.LoadAssetAsync<GameObject>(IncineratorDroneMasterPath).WaitForCompletion();
 
-            if (Main.MechanicalAllyOrbitEnabled) {
-                // use seperate AI changes if mechanical orbiting is enabled
-                foreach (AISkillDriver driver in master.GetComponents<AISkillDriver>()) {
-                    switch (driver.customName) {
-                        case "StrafeNearbyEnemies":
-                            driver.movementType = AISkillDriver.MovementType.Stop;
-                            break;
-                        case "ChaseFarEnemies":
-                            driver.maxDistance = IncineratorDroneChaseDistance;
-                            driver.movementType = AISkillDriver.MovementType.Stop;
-                            break;
-                        default:
-                            GameObject.Destroy(driver);
-                            break;
-                    }
-                }
-                return;
-            }
-
             // tweak skill drivers
             foreach (AISkillDriver driver in master.GetComponents<AISkillDriver>()) {
                 switch (driver.customName) {

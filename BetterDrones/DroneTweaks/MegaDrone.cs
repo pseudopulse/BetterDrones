@@ -30,15 +30,15 @@ namespace BetterDrones.DroneTweaks {
         private static float MegaDroneBaseCrit = Main.config.Bind<float>("TC-280 - Stats", "Base Critical Chance", 10f, "The base critical chance of a TC-280, vanilla is 0.").Value;
         private static float MegaDroneBaseDamage = Main.config.Bind<float>("TC-280 - Stats", "Base Damage", 7.5f, "The base damage of a TC-280, vanilla is 14.").Value;
         // skill config vars
-        private static int MegaDroneBulletCount = Main.config.Bind<int>("TC-280 - Primary", "Bullet Count", 26, "The total bullets fired by a TC-280's primary, vanilla is 15.").Value;
+        private static int MegaDroneBulletCount = Main.config.Bind<int>("TC-280 - Primary", "Bullet Count", 20, "The total bullets fired by a TC-280's primary, vanilla is 15.").Value;
         private static int MegaDroneMaxSpread = Main.config.Bind<int>("TC-280 - Primary", "Maximum Spread", 0, "The maximum spread of a TC-280's primary, vanilla is 1.").Value;
-        private static int MegaDroneForce = Main.config.Bind<int>("TC-280 - Primary", "Knockback", 600, "The knockback of a TC-280's primary, vanilla is 400.").Value;
-        private static float MegaDroneDamageCoeff = Main.config.Bind<int>("TC-280 - Primary", "Damage Coefficient", 5, "The damage coefficient of a TC-280's primary, vanilla is 2.5.").Value;
+        private static int MegaDroneForce = Main.config.Bind<int>("TC-280 - Primary", "Knockback", 400, "The knockback of a TC-280's primary, vanilla is 400.").Value;
+        private static float MegaDroneDamageCoeff = Main.config.Bind<int>("TC-280 - Primary", "Damage Coefficient", 3, "The damage coefficient of a TC-280's primary, vanilla is 2.5.").Value;
         // m2
         private static float MegaDroneRocketDamage = Main.config.Bind<float>("TC-280 - Secondary", "Damage Coefficient", 5, "The damage coefficient of a TC-280's rockets, vanilla is 4").Value;
-        private static float MegaDroneRocketForce = Main.config.Bind<float>("TC-280 - Secondary", "Knockback", 1600, "The knockback of a TC-280's rockets, vanilla is 1000").Value;
+        private static float MegaDroneRocketForce = Main.config.Bind<float>("TC-280 - Secondary", "Knockback", 1000, "The knockback of a TC-280's rockets, vanilla is 1000").Value;
         // debuff laser
-        public static bool MegaDroneLaserEnabled = Main.config.Bind<bool>("TC-280 - Laser", "Use Debuff Laser", true, "Should the TC-280 have a passive laser that debuffs targets?").Value;
+        public static bool MegaDroneLaserEnabled = Main.config.Bind<bool>("TC-280 - Laser", "Use Debuff Laser", false, "Should the TC-280 have a passive laser that debuffs targets?").Value;
         public static float MegaDroneLaserInterval = Main.config.Bind<float>("TC-280 - Laser", "Interval", 5, "How often the laser should switch on.").Value;
 
         private static void TweakAI() {

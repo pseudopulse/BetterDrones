@@ -54,7 +54,6 @@ A mod that tweaks drones to make them more useful and less boring. Fully configu
 - Longer targeting range
 - More aggressive
 - Much tankier
-- Has a passive laser that switches on in intervals of 5 seconds, applying several supportive debuffs to it's current target
 
 ## Gunner Turret
 - Longer targeting range
@@ -62,6 +61,15 @@ A mod that tweaks drones to make them more useful and less boring. Fully configu
 - Energy Shield that switches on for 5 seconds after dealing 1000% total damage, blocks projectiles from the outside.
 
 # Changelog
+## 1.3.0
+- heavily nerfed tc-280
+- tc-280 laser is now disabled by default
+- added config for drone transparency (default is 50% transparent)
+- made healing drones not ignore you
+- drones now evenly position themselves around you while orbiting, instead of randomly clumping up
+- incinerator drones no longer orbit by default
+- gave an orbit offset to strike drones from the backup
+- gave an orbit offset to the tc-280 prototype
 ## 1.2.5
 - made drones not make idle noise
 - smoothed out orbital movement for real this time
