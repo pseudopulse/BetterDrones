@@ -126,7 +126,7 @@ namespace BetterDrones.DroneTweaks {
                 IEnumerable<CharacterMaster> minions = CharacterMaster.readOnlyInstancesList.Where(x => x.minionOwnership && x.minionOwnership.ownerMaster == master);
                 foreach (CharacterMaster minion in minions) {
                     CharacterBody minionBody = minion.GetBody();
-                    if (minionBody && minionBody.isFlying && minionBody.bodyFlags.HasFlag(CharacterBody.BodyFlags.Mechanical)) {
+                    if (minionBody && minionBody.GetComponent<VectorPID>() && minionBody.bodyFlags.HasFlag(CharacterBody.BodyFlags.Mechanical)) {
                         if (Main.MechanicalAllyOrbitBlacklist.Contains(BodyCatalog.GetBodyName(minionBody.bodyIndex))) {
                             continue;
                         }
