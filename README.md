@@ -61,7 +61,7 @@ A mod that tweaks drones to make them more useful and less boring. Fully configu
 - Energy Shield that switches on for 5 seconds after dealing 1000% total damage, blocks projectiles from the outside.
 
 # Changelog
-## 1.3.0
+## 1.4.0
 - heavily nerfed tc-280
 - tc-280 laser is now disabled by default
 - added config for drone transparency (default is 50% transparent)
@@ -70,7 +70,7 @@ A mod that tweaks drones to make them more useful and less boring. Fully configu
 - incinerator drones no longer orbit by default
 - gave an orbit offset to strike drones from the backup
 - gave an orbit offset to the tc-280 prototype
-## 1.2.5
+## 1.3.0
 - made drones not make idle noise
 - smoothed out orbital movement for real this time
 ## 1.2.3
