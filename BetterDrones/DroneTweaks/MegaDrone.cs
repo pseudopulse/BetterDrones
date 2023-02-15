@@ -9,6 +9,8 @@ using BepInEx.Configuration;
 using RoR2.CharacterAI;
 using EntityStates.Drone.DroneWeapon;
 using EntityStates;
+using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 namespace BetterDrones.DroneTweaks {
     public class MegaDrone {
@@ -40,7 +42,9 @@ namespace BetterDrones.DroneTweaks {
         // debuff laser
         public static bool MegaDroneLaserEnabled = Main.config.Bind<bool>("TC-280 - Laser", "Use Debuff Laser", false, "Should the TC-280 have a passive laser that debuffs targets?").Value;
         public static float MegaDroneLaserInterval = Main.config.Bind<float>("TC-280 - Laser", "Interval", 5, "How often the laser should switch on.").Value;
-
+        // spawn tweaks
+        public static bool MegaDroneGuaranteed = Main.config.Bind<bool>("TC-280 - Map Secret", "Enabled", true, "Makes the TC-280 a guaranteed map secret on rallypoint and makes it no longer spawn naturally").Value;
+        private static Vector3 SpawnLocation = new Vector3(54.6f, 112.2f, 71.3f);
         private static void TweakAI() {
             GameObject master = Addressables.LoadAssetAsync<GameObject>(MegaDroneMasterPath).WaitForCompletion();
         
@@ -134,10 +138,25 @@ namespace BetterDrones.DroneTweaks {
             }
         }
 
+        private static void SpawnTweak() {
+            if (MegaDroneGuaranteed) {
+                Utils.Paths.InteractableSpawnCard.iscBrokenMegaDrone.Load<InteractableSpawnCard>().maxSpawnsPerStage = 0;
+                On.RoR2.SceneDirector.PopulateScene += (orig, self) => {
+                    orig(self);
+                    if (NetworkServer.active && SceneManager.GetActiveScene().name == "frozenwall") {
+                        InteractableSpawnCard isc = Utils.Paths.InteractableSpawnCard.iscBrokenMegaDrone.Load<InteractableSpawnCard>();
+                        GameObject tc = GameObject.Instantiate(isc.prefab, SpawnLocation, Quaternion.identity);
+                        NetworkServer.Spawn(tc);
+                    }
+                };
+            }
+        }
+
         public static void EnableChanges() {
             if (MegaDroneEnabled) {
                 TweakAI();
                 TweakBody();
+                SpawnTweak();
             }
         }
     }

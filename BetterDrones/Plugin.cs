@@ -48,7 +48,7 @@ namespace BetterDrones {
             MechanicalAllyOrbitOffset = config.Bind<float>("Global", "Drone Orbit Height", 1f, "The height aerial mechanical allies should orbit you from.").Value;
             MechanicalAllyOrbitSpeed = config.Bind<float>("Global", "Drone Orbit Speed", 7f, "The speed in seconds in which it should take for an aerial mechanical ally to make a full rotation around you.").Value;
 
-            MechanicalAllyOrbitBlacklist = config.Bind<string>("Global", "Orbit Blacklist", "RoboBallBossBody SuperRoboBallBossBody SquallBody BackupDroneBody FlameDroneBody", "List of body names to blacklist from orbit, seperated by whitespace.").Value.Split(' ').ToList();
+            MechanicalAllyOrbitBlacklist = config.Bind<string>("Global", "Orbit Blacklist", "RoboBallBossBody SuperRoboBallBossBody SquallBody BackupDroneBody FlameDroneBody MegaDroneBody", "List of body names to blacklist from orbit, seperated by whitespace.").Value.Split(' ').ToList();
 
             PingControlEnabled = config.Bind<bool>("Global", "Ping Control", true, "Should mechanical allies target your most recent ping?").Value;
 

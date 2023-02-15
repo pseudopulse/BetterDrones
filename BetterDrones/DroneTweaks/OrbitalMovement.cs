@@ -99,11 +99,15 @@ namespace BetterDrones.DroneTweaks {
             internal Vector3 GetOffset(CharacterBody orbiter) {
                 switch (BodyCatalog.GetBodyName(orbiter.bodyIndex)) {
                     case "MegaDroneBody":
-                        return offset * 2;
+                        return offset * 7;
                     case "EmergencyDroneBody":
-                        return offset * 2;
+                        return offset * 3;
                     case "BackupDroneBody":
                         return offset * 2;
+                    case "RoboBallRedBuddyBody":
+                        return offset * 5;
+                    case "RoboBallGreenBuddyBody":
+                        return offset * 5;
                     default:
                         return offset;
                 }
@@ -112,11 +116,15 @@ namespace BetterDrones.DroneTweaks {
             internal float GetDistance(CharacterBody orbiter) {
                 switch (BodyCatalog.GetBodyName(orbiter.bodyIndex)) {
                     case "MegaDroneBody":
-                        return distance * 2;
+                        return distance * 7;
                     case "EmergencyDroneBody":
-                        return distance * 2;
+                        return distance * 3;
                     case "BackupDroneBody":
                         return distance * 2;
+                    case "RoboBallRedBuddyBody":
+                        return distance * 5;
+                    case "RoboBallGreenBuddyBody":
+                        return distance * 5;
                     default:
                         return distance;
                 }
