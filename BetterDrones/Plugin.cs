@@ -44,8 +44,8 @@ namespace BetterDrones {
             config = Config;
 
             MechanicalAllyOrbitEnabled = config.Bind<bool>("Global", "RoR1 Drone Movement", true, "Should aerial mechanical allies orbit you like in Risk of Rain 1? This disables AI movement changes.").Value;
-            MechanicalAllyOrbitDistance = config.Bind<float>("Global", "Drone Orbit Distance", 2f, "The distance aerial mechanical allies should orbit you from.").Value;
-            MechanicalAllyOrbitOffset = config.Bind<float>("Global", "Drone Orbit Height", 1f, "The height aerial mechanical allies should orbit you from.").Value;
+            MechanicalAllyOrbitDistance = config.Bind<float>("Global", "Drone Orbit Distance", 3f, "The distance aerial mechanical allies should orbit you from.").Value;
+            MechanicalAllyOrbitOffset = config.Bind<float>("Global", "Drone Orbit Height", 1.3f, "The height aerial mechanical allies should orbit you from.").Value;
             MechanicalAllyOrbitSpeed = config.Bind<float>("Global", "Drone Orbit Speed", 7f, "The speed in seconds in which it should take for an aerial mechanical ally to make a full rotation around you.").Value;
 
             MechanicalAllyOrbitBlacklist = config.Bind<string>("Global", "Orbit Blacklist", "RoboBallBossBody SuperRoboBallBossBody SquallBody BackupDroneBody FlameDroneBody MegaDroneBody", "List of body names to blacklist from orbit, seperated by whitespace.").Value.Split(' ').ToList();
@@ -112,7 +112,7 @@ namespace BetterDrones {
         private static void OverrideInputsPerfectAim(On.RoR2.CharacterAI.BaseAI.orig_FixedUpdate orig, BaseAI self) {
             orig(self);
             if (NetworkServer.active) {
-                if (self.body && self.body.gameObject && self.body.bodyFlags.HasFlag(CharacterBody.BodyFlags.Mechanical)) {
+                if (self.body && self.body.gameObject && self.body.bodyFlags.HasFlag(CharacterBody.BodyFlags.Mechanical) && self.body.teamComponent.teamIndex == TeamIndex.Player) {
                     if (self.currentEnemy.GetBullseyePosition(out Vector3 pos)) {
                         self.bodyInputBank.aimDirection = (pos - self.bodyInputBank.aimOrigin).normalized;
                     }

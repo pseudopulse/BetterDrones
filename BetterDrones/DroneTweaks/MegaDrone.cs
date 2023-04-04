@@ -146,6 +146,8 @@ namespace BetterDrones.DroneTweaks {
                     if (NetworkServer.active && SceneManager.GetActiveScene().name == "frozenwall") {
                         InteractableSpawnCard isc = Utils.Paths.InteractableSpawnCard.iscBrokenMegaDrone.Load<InteractableSpawnCard>();
                         GameObject tc = GameObject.Instantiate(isc.prefab, SpawnLocation, Quaternion.identity);
+                        PurchaseInteraction interaction = tc.GetComponent<PurchaseInteraction>();
+                        interaction.Networkcost = Run.instance.GetDifficultyScaledCost(interaction.cost);
                         NetworkServer.Spawn(tc);
                     }
                 };

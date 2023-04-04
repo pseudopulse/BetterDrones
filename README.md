@@ -63,6 +63,11 @@ A mod that tweaks drones to make them more useful and less boring. Fully configu
 - Energy Shield that switches on for 5 seconds after dealing 1000% total damage, blocks projectiles from the outside.
 
 # Changelog
+## 1.5.2
+- orbiting radius is now larger
+- fixed mechanical enemies also being perfectly accurate
+## 1.5.1
+- tc-280 now scales cost properly
 ## 1.5.0
 - added proper offsets to the tc-280 and empathy cores so you can see now
 - made the tc-280 no longer naturally spawn
