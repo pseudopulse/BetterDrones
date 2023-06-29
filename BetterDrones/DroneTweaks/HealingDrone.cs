@@ -48,7 +48,7 @@ namespace BetterDrones.DroneTweaks {
                             driver.maxTargetHealthFraction = 0.85f;
                             driver.activationRequiresAimConfirmation = false;
                             driver.minDistance = 60f;
-                            break;
+                            break; 
                         default:
                             GameObject.Destroy(driver);
                             break;
@@ -69,7 +69,7 @@ namespace BetterDrones.DroneTweaks {
                     case "HealNearAlly":
                         driver.maxTargetHealthFraction = 0.85f;
                         driver.minDistance = 60f;
-                        break;
+                        break; 
                     default:
                         break;
                 }

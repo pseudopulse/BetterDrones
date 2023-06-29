@@ -63,6 +63,10 @@ A mod that tweaks drones to make them more useful and less boring. Fully configu
 - Energy Shield that switches on for 5 seconds after dealing 1000% total damage, blocks projectiles from the outside.
 
 # Changelog
+## 1.5.5
+- fixed healing drone ai for real this time
+## 1.5.4
+- moredrones compat
 ## 1.5.3
 - fixed healing drone ai being really dumb and not healing the player often
 ## 1.5.2

@@ -50,6 +50,11 @@ namespace BetterDrones {
 
             MechanicalAllyOrbitBlacklist = config.Bind<string>("Global", "Orbit Blacklist", "RoboBallBossBody SuperRoboBallBossBody SquallBody BackupDroneBody FlameDroneBody MegaDroneBody", "List of body names to blacklist from orbit, seperated by whitespace.").Value.Split(' ').ToList();
 
+            MechanicalAllyOrbitBlacklist.Add("HellDroneBody");
+            MechanicalAllyOrbitBlacklist.Add("BoosterDroneBody");
+            MechanicalAllyOrbitBlacklist.Add("ShredderDrone");
+
+
             PingControlEnabled = config.Bind<bool>("Global", "Ping Control", true, "Should mechanical allies target your most recent ping?").Value;
 
             PerfectAimEnabled = config.Bind<bool>("Global", "Perfect Aim", true, "Should mechanical allies have perfect aim?").Value;
@@ -112,6 +117,9 @@ namespace BetterDrones {
         private static void OverrideInputsPerfectAim(On.RoR2.CharacterAI.BaseAI.orig_FixedUpdate orig, BaseAI self) {
             orig(self);
             if (NetworkServer.active) {
+                if (self.gameObject.name.Contains("Drone2") || self.gameObject.name.Contains("EmergencyDrone")) {
+                    return;
+                }
                 if (self.body && self.body.gameObject && self.body.bodyFlags.HasFlag(CharacterBody.BodyFlags.Mechanical) && self.body.teamComponent.teamIndex == TeamIndex.Player) {
                     if (self.currentEnemy.GetBullseyePosition(out Vector3 pos)) {
                         self.bodyInputBank.aimDirection = (pos - self.bodyInputBank.aimOrigin).normalized;
