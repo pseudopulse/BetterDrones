@@ -100,8 +100,9 @@ namespace BetterDrones.DroneTweaks {
             body.baseAcceleration = EmergencyDroneBaseAcceleration;
             body.baseRegen = EmergencyDroneBaseRegen;
             body.baseDamage = EmergencyDroneBaseDamage;
+            body.PerformAutoCalculateLevelStats();
 
-            prefab.RemoveComponents<AkEvent>();
+            if (Main.MechanicalAllyDisableSounds) prefab.RemoveComponents<AkEvent>();
 
             // tweak skills
             On.EntityStates.Drone.DroneWeapon.StartHealBeam.OnEnter += (orig, self) => {

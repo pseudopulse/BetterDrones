@@ -28,8 +28,8 @@ namespace BetterDrones.DroneTweaks {
         private static float MissileDroneBaseCrit = Main.config.Bind<float>("Missile Drone - Stats", "Base Critical Chance", 15f, "The base critical chance of a Missile Drone, vanilla is 0.").Value;
         private static float MissileDroneBaseDamage = Main.config.Bind<float>("Missile Drone - Stats", "Base Damage", 7f, "The base damage of a Missile Drone, vanilla is 14.").Value;
         // skill config vars
-        private static int MissileDroneMissileCount = Main.config.Bind<int>("Missile Drone - Primary", "Missile Count", 6, "The total missiles fired by a Missile Drone's primary, vanilla is 4.").Value;
-        private static float MissileDroneDamageCoeff = Main.config.Bind<int>("Missile Drone - Primary", "Damage Coefficient", 2, "The damage coefficient of a Missile Drone's primary, vanilla is 1.").Value;
+        private static int MissileDroneMissileCount = Main.config.Bind<int>("Missile Drone - Primary", "Missile Count", 5, "The total missiles fired by a Missile Drone's primary, vanilla is 4.").Value;
+        private static float MissileDroneDamageCoeff = Main.config.Bind<float>("Missile Drone - Primary", "Damage Coefficient", 2, "The damage coefficient of a Missile Drone's primary, vanilla is 1.").Value;
         
 
         private static void TweakAI() {
@@ -91,8 +91,9 @@ namespace BetterDrones.DroneTweaks {
             body.baseAcceleration = MissileDroneBaseAcceleration;
             body.baseRegen = MissileDroneBaseRegen;
             body.baseDamage = MissileDroneBaseDamage;
+            body.PerformAutoCalculateLevelStats();
 
-            prefab.RemoveComponents<AkEvent>();
+            if (Main.MechanicalAllyDisableSounds) prefab.RemoveComponents<AkEvent>();
 
             // tweak skills
             On.EntityStates.Drone.DroneWeapon.FireMissileBarrage.OnEnter += (orig, self) => {

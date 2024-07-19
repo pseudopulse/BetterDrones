@@ -92,8 +92,9 @@ namespace BetterDrones.DroneTweaks {
             body.baseAcceleration = GunnerDroneBaseAcceleration;
             body.baseRegen = GunnerDroneBaseRegen;
             body.baseDamage = GunnerDroneBaseDamage;
+            body.PerformAutoCalculateLevelStats();
 
-            prefab.RemoveComponents<AkEvent>();
+            if (Main.MechanicalAllyDisableSounds) prefab.RemoveComponents<AkEvent>();
 
             // tweak skills
             On.EntityStates.Drone.DroneWeapon.FireTurret.OnEnter += (orig, self) => {

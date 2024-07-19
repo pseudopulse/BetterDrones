@@ -26,8 +26,8 @@ namespace BetterDrones.DroneTweaks {
         private static float GunnerTurretBaseDamage = Main.config.Bind<float>("Gunner Turret - Stats", "Base Damage", 18f, "The base damage of a Gunner Turret, vanilla is 18.").Value;
         // energy shield
         public static bool GunnerTurretShieldEnabled = Main.config.Bind<bool>("Gunner Turret - Energy Shield", "Enabled", true, "Should the Gunner Turret has a periodic energy shield after dealing enough damage?").Value;
-        public static float GunnerTurretShieldDamage = Main.config.Bind<float>("Gunner Turret - Energy Shield", "Damage Required", 1000f, "The damage required to active a Gunner Turret's Energy Shield, in percentage of base damage.").Value;
-        public static float GunnerTurretShieldDuration = Main.config.Bind<float>("Gunner Turret - Energy Shield", "Duration", 5f, "The duration of a Gunner Turret's Energy Shield.").Value;
+        public static float GunnerTurretShieldDamage = Main.config.Bind<float>("Gunner Turret - Energy Shield", "Damage Required", 2500f, "The damage required to active a Gunner Turret's Energy Shield, in percentage of base damage.").Value;
+        public static float GunnerTurretShieldDuration = Main.config.Bind<float>("Gunner Turret - Energy Shield", "Duration", 4f, "The duration of a Gunner Turret's Energy Shield.").Value;
         private static void TweakAI() {
             GameObject master = Addressables.LoadAssetAsync<GameObject>(GunnerTurretMasterPath).WaitForCompletion();
 
@@ -48,6 +48,7 @@ namespace BetterDrones.DroneTweaks {
             body.baseCrit = GunnerTurretBaseCrit;
             body.baseRegen = GunnerTurretBaseRegen;
             body.baseDamage = GunnerTurretBaseDamage;
+            body.PerformAutoCalculateLevelStats();
 
             if (GunnerTurretShieldEnabled) {
                 EntityStateMachine esm = prefab.AddComponent<EntityStateMachine>();
@@ -60,7 +61,7 @@ namespace BetterDrones.DroneTweaks {
                 nsm.stateMachines = prefab.GetComponents<EntityStateMachine>();
             }
 
-            prefab.RemoveComponents<AkEvent>();
+            if (Main.MechanicalAllyDisableSounds) prefab.RemoveComponents<AkEvent>();
         }
 
         public static void EnableChanges() {

@@ -16,6 +16,20 @@ namespace BetterDrones.DroneTweaks {
     public static class IgnoreCollision {
         public static void Enable() {
             On.RoR2.Projectile.ProjectileController.IgnoreCollisionsWithOwner += Ignore;
+            On.RoR2.CharacterBody.Start += Ignore2;
+        }
+
+        private static void Ignore2(On.RoR2.CharacterBody.orig_Start orig, CharacterBody self)
+        {
+            orig(self);
+
+            if (self.bodyFlags.HasFlag(CharacterBody.BodyFlags.Mechanical) && self.master && self.master.minionOwnership.ownerMaster && self.GetComponent<Collider>()) {
+                CharacterBody body = self.master.minionOwnership.ownerMaster.GetBody();
+
+                if (body) {
+                    Physics.IgnoreCollision(self.GetComponent<Collider>(), body.GetComponent<Collider>(), true);
+                }
+            }
         }
 
         private static void Ignore(On.RoR2.Projectile.ProjectileController.orig_IgnoreCollisionsWithOwner orig, ProjectileController self, bool ignore) {

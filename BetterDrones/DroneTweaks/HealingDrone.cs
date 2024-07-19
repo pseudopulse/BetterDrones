@@ -28,7 +28,7 @@ namespace BetterDrones.DroneTweaks {
         // skill config vars
         private static int HealingDroneDuration = Main.config.Bind<int>("Healing Drone - Primary", "Duration", 7, "The duration of a Healing Drone's heal, vanilla is 5.").Value;
         private static int HealingDroneRange = Main.config.Bind<int>("Healing Drone - Primary", "Range", 90, "The maximum targeting range of a Healing Drone's heal, vanilla is 50.").Value;
-        private static float HealingDroneHealCoeff = Main.config.Bind<int>("Healing Drone - Primary", "Heal Coefficient", 1, "The heal coefficient of a Healing Drone's healing beam, vanilla is 0.5.").Value;
+        private static float HealingDroneHealCoeff = Main.config.Bind<float>("Healing Drone - Primary", "Heal Coefficient", 1, "The heal coefficient of a Healing Drone's healing beam, vanilla is 0.5.").Value;
         
 
         private static void TweakAI() {
@@ -79,7 +79,7 @@ namespace BetterDrones.DroneTweaks {
         private static void TweakBody() {
             GameObject prefab = Addressables.LoadAssetAsync<GameObject>(HealingDroneBodyPath).WaitForCompletion();
 
-            prefab.RemoveComponents<AkEvent>();
+            if (Main.MechanicalAllyDisableSounds) prefab.RemoveComponents<AkEvent>();
 
             // tweak stats
             CharacterBody body = prefab.GetComponent<CharacterBody>();
@@ -89,6 +89,7 @@ namespace BetterDrones.DroneTweaks {
             body.baseAcceleration = HealingDroneBaseAcceleration;
             body.baseRegen = HealingDroneBaseRegen;
             body.baseDamage = HealingDroneBaseDamage;
+            body.PerformAutoCalculateLevelStats();
 
             // tweak skills
             On.EntityStates.Drone.DroneWeapon.StartHealBeam.OnEnter += (orig, self) => {

@@ -68,8 +68,9 @@ namespace BetterDrones.DroneTweaks {
             body.baseRegen = IncineratorDroneBaseRegen;
             body.baseDamage = IncineratorDroneBaseDamage;
             body.baseArmor = IncineratorDroneBaseArmor;
+            body.PerformAutoCalculateLevelStats();
 
-            prefab.RemoveComponents<AkEvent>();
+            if (Main.MechanicalAllyDisableSounds) prefab.RemoveComponents<AkEvent>();
 
             // tweak skills
             On.EntityStates.Mage.Weapon.Flamethrower.OnEnter += (orig, self) => {

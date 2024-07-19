@@ -63,6 +63,26 @@ A mod that tweaks drones to make them more useful and less boring. Fully configu
 - Energy Shield that switches on for 5 seconds after dealing 1000% total damage, blocks projectiles from the outside.
 
 # Changelog
+## 1.7.3
+- made the drone sound disabling configurable
+- fixed certain config values being ints when they should be floats
+## 1.7.2
+- fixed bullets that have no attacker assigned breaking entirely
+## 1.7.1
+- (mostly) fixed jitter with orbital movement (drones will still jitter a bit when running at very high speeds)
+- all drones no longer have collision with their owner
+## 1.7.0
+- nerfed the gunner turret shield (damage req: 1000% -> 2500%; duration: 5s -> 4s)
+- nerfed the missile drone's damage output (missile count: 6 -> 5)
+- fixed the stat halving not affecting scaling
+## 1.6.3
+- reverted 1.6.2
+## 1.6.2
+- updated BepInIncompatibility
+## 1.6.1
+- orbital drones are no longer targeted by enemies
+## 1.6.0
+- cloak propagates to drones if orbitals are enabled
 ## 1.5.5
 - fixed healing drone ai for real this time
 ## 1.5.4

@@ -10,6 +10,8 @@ using RoR2.CharacterAI;
 using UnityEngine.Networking;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using KinematicCharacterController;
 
 namespace BetterDrones.DroneTweaks {
     public class OrbitalMovement {
@@ -63,6 +65,25 @@ namespace BetterDrones.DroneTweaks {
                 body = GetComponent<CharacterBody>();
                 master = body.master;
                 initialTime = Run.instance.GetRunStopwatch();
+
+                KillThisElf<CharacterMotor>();
+                KillThisElf<KinematicCharacterMotor>();
+                KillThisElf<RigidbodyMotor>();
+                KillThisElf<RigidbodyDirection>();
+                KillThisElf<VectorPID>();
+                KillThisElf<QuaternionPID>();
+
+                if (GetComponent<Rigidbody>()) {
+                    GetComponent<Rigidbody>().isKinematic = true;
+                }
+            }
+
+            private void KillThisElf<T>() where T : MonoBehaviour {
+                T t = GetComponent<T>();
+
+                if (t) {
+                    t.enabled = true;
+                }
             }
 
             private void FixedUpdate() {
@@ -140,6 +161,11 @@ namespace BetterDrones.DroneTweaks {
                         }
                         else if (!orbiters.Contains(minionBody)) {
                             orbiters.Add(minionBody);
+
+                            foreach (HurtBox box in minionBody.hurtBoxGroup.hurtBoxes) {
+                                box.isBullseye = false;
+                                HurtBox.bullseyesList.Remove(box);
+                            }
                         }
                     }
                 }

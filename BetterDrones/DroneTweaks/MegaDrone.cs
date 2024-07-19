@@ -35,7 +35,7 @@ namespace BetterDrones.DroneTweaks {
         private static int MegaDroneBulletCount = Main.config.Bind<int>("TC-280 - Primary", "Bullet Count", 20, "The total bullets fired by a TC-280's primary, vanilla is 15.").Value;
         private static int MegaDroneMaxSpread = Main.config.Bind<int>("TC-280 - Primary", "Maximum Spread", 0, "The maximum spread of a TC-280's primary, vanilla is 1.").Value;
         private static int MegaDroneForce = Main.config.Bind<int>("TC-280 - Primary", "Knockback", 400, "The knockback of a TC-280's primary, vanilla is 400.").Value;
-        private static float MegaDroneDamageCoeff = Main.config.Bind<int>("TC-280 - Primary", "Damage Coefficient", 3, "The damage coefficient of a TC-280's primary, vanilla is 2.5.").Value;
+        private static float MegaDroneDamageCoeff = Main.config.Bind<float>("TC-280 - Primary", "Damage Coefficient", 3, "The damage coefficient of a TC-280's primary, vanilla is 2.5.").Value;
         // m2
         private static float MegaDroneRocketDamage = Main.config.Bind<float>("TC-280 - Secondary", "Damage Coefficient", 5, "The damage coefficient of a TC-280's rockets, vanilla is 4").Value;
         private static float MegaDroneRocketForce = Main.config.Bind<float>("TC-280 - Secondary", "Knockback", 1000, "The knockback of a TC-280's rockets, vanilla is 1000").Value;
@@ -99,7 +99,7 @@ namespace BetterDrones.DroneTweaks {
         private static void TweakBody() {
             GameObject prefab = Addressables.LoadAssetAsync<GameObject>(MegaDroneBodyPath).WaitForCompletion();
 
-            prefab.RemoveComponents<AkEvent>();
+            if (Main.MechanicalAllyDisableSounds) prefab.RemoveComponents<AkEvent>();
 
             // tweak stats
             CharacterBody body = prefab.GetComponent<CharacterBody>();
@@ -109,6 +109,7 @@ namespace BetterDrones.DroneTweaks {
             body.baseAcceleration = MegaDroneBaseAcceleration;
             body.baseRegen = MegaDroneBaseRegen;
             body.baseDamage = MegaDroneBaseDamage;
+            body.PerformAutoCalculateLevelStats();
 
             // tweak skills
             On.EntityStates.Drone.DroneWeapon.FireMegaTurret.OnEnter += (orig, self) => {

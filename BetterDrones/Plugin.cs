@@ -25,7 +25,7 @@ namespace BetterDrones {
         public const string PluginGUID = PluginAuthor + "." + PluginName;
         public const string PluginAuthor = "pseudopulse";
         public const string PluginName = "BetterDrones";
-        public const string PluginVersion = "1.0.0";
+        public const string PluginVersion = "1.7.0";
         public static BepInEx.Logging.ManualLogSource ModLogger;
         public static ConfigFile config;
 
@@ -38,6 +38,7 @@ namespace BetterDrones {
         public static bool PingControlEnabled;
         public static bool PerfectAimEnabled;
         public static float Alpha;
+        public static bool MechanicalAllyDisableSounds;
         public void Awake() {
             // set logger and config
             ModLogger = Logger;
@@ -53,6 +54,8 @@ namespace BetterDrones {
             MechanicalAllyOrbitBlacklist.Add("HellDroneBody");
             MechanicalAllyOrbitBlacklist.Add("BoosterDroneBody");
             MechanicalAllyOrbitBlacklist.Add("ShredderDrone");
+
+            MechanicalAllyDisableSounds = config.Bind<bool>("Global", "Disable Drone Idle Sounds", true, "Disables the sounds that drones play when idle. Recommended when using orbitals.").Value;
 
 
             PingControlEnabled = config.Bind<bool>("Global", "Ping Control", true, "Should mechanical allies target your most recent ping?").Value;
@@ -83,6 +86,7 @@ namespace BetterDrones {
 
             IgnoreCollision.Enable();
             DroneTransparency.EnableChanges();
+            DroneCloakPropagation.Setup();
 
             On.RoR2.BulletAttack.Fire += AlliesDontEatShots;
             //On.EntityStates.Merc.Evis.SearchForTarget += DontTargetAllies;
@@ -131,7 +135,7 @@ namespace BetterDrones {
         private static void AlliesDontEatShots(On.RoR2.BulletAttack.orig_Fire orig, BulletAttack self) {
             if (self.filterCallback == BulletAttack.defaultFilterCallback) {
                 self.filterCallback = delegate (BulletAttack attack, ref BulletAttack.BulletHit hit) {
-                    if (hit.hitHurtBox && hit.hitHurtBox.teamIndex == self.owner.GetComponent<TeamComponent>().teamIndex) {
+                    if (self.owner && hit.hitHurtBox && hit.hitHurtBox.teamIndex == self.owner.GetComponent<TeamComponent>().teamIndex) {
                         return false;
                     }
                     else {
