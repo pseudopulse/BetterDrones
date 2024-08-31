@@ -16,7 +16,7 @@ using KinematicCharacterController;
 namespace BetterDrones.DroneTweaks {
     public class OrbitalMovement {
         public static void EnableOrbitalMovement() {
-            On.RoR2.CharacterAI.BaseAI.FixedUpdate += OverrideInputs;
+            On.RoR2.CharacterAI.BaseAI.ManagedFixedUpdate += OverrideInputs;
             On.RoR2.CharacterBody.Start += EnableOrbit;
             On.RoR2.SummonMasterBehavior.OpenSummonReturnMaster += ForceRecheck;
         }
@@ -30,8 +30,8 @@ namespace BetterDrones.DroneTweaks {
             return master;
         }
 
-        private static void OverrideInputs(On.RoR2.CharacterAI.BaseAI.orig_FixedUpdate orig, BaseAI self) {
-            orig(self);
+        private static void OverrideInputs(On.RoR2.CharacterAI.BaseAI.orig_ManagedFixedUpdate orig, BaseAI self, float deltaTime) {
+            orig(self, deltaTime);
             if (NetworkServer.active) {
                 if (self.body && self.body.gameObject && self.body.gameObject.GetComponent<OrbitController>()) {
                     self.bodyInputBank.moveVector = Vector3.zero;

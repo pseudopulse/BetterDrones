@@ -25,7 +25,7 @@ namespace BetterDrones {
         public const string PluginGUID = PluginAuthor + "." + PluginName;
         public const string PluginAuthor = "pseudopulse";
         public const string PluginName = "BetterDrones";
-        public const string PluginVersion = "1.7.0";
+        public const string PluginVersion = "1.7.4";
         public static BepInEx.Logging.ManualLogSource ModLogger;
         public static ConfigFile config;
 
@@ -73,7 +73,7 @@ namespace BetterDrones {
             }
 
             if (PerfectAimEnabled) {
-                On.RoR2.CharacterAI.BaseAI.FixedUpdate += OverrideInputsPerfectAim;
+                On.RoR2.CharacterAI.BaseAI.ManagedFixedUpdate += OverrideInputsPerfectAim;
             }
 
             GunnerDrone.EnableChanges();
@@ -118,8 +118,8 @@ namespace BetterDrones {
             }
         }
 
-        private static void OverrideInputsPerfectAim(On.RoR2.CharacterAI.BaseAI.orig_FixedUpdate orig, BaseAI self) {
-            orig(self);
+        private static void OverrideInputsPerfectAim(On.RoR2.CharacterAI.BaseAI.orig_ManagedFixedUpdate orig, BaseAI self, float deltaTime) {
+            orig(self, deltaTime);
             if (NetworkServer.active) {
                 if (self.gameObject.name.Contains("Drone2") || self.gameObject.name.Contains("EmergencyDrone")) {
                     return;

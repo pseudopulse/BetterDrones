@@ -63,6 +63,8 @@ A mod that tweaks drones to make them more useful and less boring. Fully configu
 - Energy Shield that switches on for 5 seconds after dealing 1000% total damage, blocks projectiles from the outside.
 
 # Changelog
+## 1.7.4
+- updated for SOTS
 ## 1.7.3
 - made the drone sound disabling configurable
 - fixed certain config values being ints when they should be floats
